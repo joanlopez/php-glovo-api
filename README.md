@@ -2,6 +2,8 @@
 
 Standalone PHP library for easy communication with Glovo Api.
 
+[![Build Status](https://secure.travis-ci.org/joanlopez/php-glovo-api.png)](http://travis-ci.org/joanlopez/php-glovo-api)
+
 ## Requirements
 
 * PHP 5.5+
