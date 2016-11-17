@@ -1,0 +1,19 @@
+language: php
+
+php:
+    - 5.5
+    - 5.6
+
+before_script:
+    - composer self-update || true
+    - composer install --dev --prefer-source
+
+script:
+    - bin/atoum
+
+notifications:
+  email:
+    recipients:
+      - joanjan14@gmail.com
+    on_success: change
+    on_failure: change

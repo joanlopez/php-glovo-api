@@ -1,0 +1,29 @@
+{
+    "name": "joanlopez/glovo-api",
+    "description": "PHP library for easy communication with Glovo Api.",
+    "keywords": ["glovo", "api"],
+    "homepage": "https://github.com/joanlopez/php-glovo-api",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joan López",
+            "email": "joanjan14@gmail.com"
+        },
+        {
+            "name": "Contributors",
+            "homepage": "https://github.com/joanlopez/php-glovo-api/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+    },
+    "require-dev": {
+        "atoum/atoum": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "JL": "src/"
+        }
+    }
+}
