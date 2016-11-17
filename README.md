@@ -18,3 +18,7 @@ PHP library for easy communication with Glovo Api.
 * Task3
 * Task2
 * Task1
+
+## Credits
+
+GlovoApi has been created by [@joanlopez].
