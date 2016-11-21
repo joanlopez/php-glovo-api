@@ -35,6 +35,8 @@ class GlovoApi
         $this->sessionManager = (is_null($sessionManager)) ? new SessionManager() : $sessionManager;
         $this->customersManager = (is_null($customersManager)) ? new CustomersManager() : $customersManager;
         $this->ordersManager = (is_null($ordersManager)) ? new OrdersManager() : $ordersManager;
+
+        $this->authToken = $this->sessionManager->login($this->clientId, $this->clientSecret);
     }
 
     public function environment()
