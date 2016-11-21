@@ -9,7 +9,7 @@ class HttpResponse extends Units\Test
 {
     public function testSuccessfulConstruct()
     {
-        $this->if($object = new TestedModel(200, 'dummy phrase'))
+        $this->if($object = new TestedModel(200, 'dummy phrase', array()))
             ->integer($object->statusCode())->isEqualTo(200)
             ->string($object->statusPhrase())->isEqualTo('dummy phrase')
             ->boolean($object->wasSuccessful())->isEqualTo(true)
@@ -18,7 +18,7 @@ class HttpResponse extends Units\Test
 
     public function testUnsuccessfulConstruct()
     {
-        $this->if($object = new TestedModel(400, 'dummy phrase'))
+        $this->if($object = new TestedModel(400, 'dummy phrase', array()))
             ->integer($object->statusCode())->isEqualTo(400)
             ->string($object->statusPhrase())->isEqualTo('dummy phrase')
             ->boolean($object->wasSuccessful())->isEqualTo(false)
