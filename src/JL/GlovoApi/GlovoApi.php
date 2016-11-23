@@ -58,4 +58,12 @@ class GlovoApi
     {
         return $this->authToken;
     }
+
+    public function close()
+    {
+        if($this->sessionManager->logout($this->authToken))
+            $this->authToken = null;
+        else
+            throw new \Exception('Error occurred while logging out');
+    }
 }

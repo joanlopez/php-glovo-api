@@ -21,4 +21,20 @@ class GlovoApi extends Units\Test
             ->string($object->authToken())->isEqualTo('1234')
         ;
     }
+
+    public function testLogout()
+    {
+        $this->if($this->mockGenerator()->orphanize('__construct'))
+            ->and($this->mockGenerator()->orphanize('login'))
+            ->and($this->mockGenerator()->orphanize('logout'))
+            ->and($this->mockClass('\JL\GlovoApi\Managers\SessionManager', '\Mock'))
+            ->and($mockSessionManager = new \mock\SessionManager())
+            ->and($mockSessionManager->getMockController()->login = '1234')
+            ->and($mockSessionManager->getMockController()->logout = true)
+            ->and($object = new TestedInstance ('dummyId', 'dummySecret', TestedInstance::ENVIRONMENT_STAGE, $mockSessionManager))
+            ->string($object->authToken())->isEqualTo('1234')
+            ->when($object->close())
+            ->then->variable($object->authToken())->isNull()
+        ;
+    }
 }

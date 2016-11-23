@@ -19,4 +19,16 @@ class SessionManager extends Units\Test
             ->string($object->login('fake-id', 'fake-secret'))->isEqualTo('1234')
         ;
     }
+
+    public function testLogout()
+    {
+        $this->if($this->mockGenerator()->orphanize('__construct'))
+            ->and($this->mockGenerator()->orphanize('deleteAuthorization'))
+            ->and($this->mockClass('\JL\GlovoApi\HTTP\HttpRequester', '\Mock'))
+            ->and($httpRequesterMock = new \mock\HttpRequester())
+            ->and($httpRequesterMock->getMockController()->deleteAuthorization = new HttpResponse(200, 'OK', array()))
+            ->and($object = new TestedManager($httpRequesterMock))
+            ->boolean($object->logout('fake-token'))->isEqualTo(true)
+        ;
+    }
 }

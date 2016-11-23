@@ -32,4 +32,17 @@ class HttpRequester
         );
         return new HttpResponse($response->getStatusCode(), $response->getReasonPhrase(), json_decode($response->getBody(), true));
     }
+
+    public function deleteAuthorization($url, $token)
+    {
+        $response = $this->client->request('DELETE', $url,
+            ['headers' =>
+                [
+                    'Accept' => 'application/json',
+                    'Authorization' => $token
+                ]
+            ]
+        );
+        return new HttpResponse($response->getStatusCode(), $response->getReasonPhrase(), json_decode($response->getBody(), true));
+    }
 }

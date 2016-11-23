@@ -21,5 +21,11 @@ class SessionManager
         $response = $this->httpRequester->postJson(self::LOGIN_URL, array('clientId' => $clientId, 'clientSecret' => $clientSecret));
         $token = ($response->wasSuccessful()) ? $response->parameters('token') : null;
         return $token;
-    } 
+    }
+
+    public function logout($token)
+    {
+        $response = $this->httpRequester->deleteAuthorization(self::LOGOUT_URL, $token);
+        return $response->wasSuccessful();
+    }
 }

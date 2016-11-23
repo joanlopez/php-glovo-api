@@ -14,9 +14,7 @@ PHP library for easy communication with Glovo Api.
 
 ## Todo
 
-* Task3
-* Task2
-* Task1
+* Add HttpRequester tests with a mocked client
 
 ## Credits
 
