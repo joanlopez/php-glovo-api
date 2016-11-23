@@ -3,6 +3,7 @@
 PHP library for easy communication with Glovo Api.
 
 [![Build Status](https://secure.travis-ci.org/joanlopez/php-glovo-api.png)](http://travis-ci.org/joanlopez/php-glovo-api)
+[![Installs](https://img.shields.io/packagist/dm/joanlopez/glovo-api.svg)](https://packagist.org/packages/joanlopez/glovo-api)
 
 ## Requirements
 
