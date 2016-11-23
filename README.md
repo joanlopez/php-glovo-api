@@ -10,7 +10,6 @@ PHP library for easy communication with Glovo Api.
 
 ## Documentation and examples
 
-* [Installation](https://github.com/joanlopez/php-glovo-api/blob/master/doc/installation.md)
 * [Getting started](https://github.com/joanlopez/php-glovo-api/blob/master/doc/getting-started.md)
 
 ## Todo
@@ -21,4 +20,4 @@ PHP library for easy communication with Glovo Api.
 
 ## Credits
 
-GlovoApi has been created by [@joanlopez].
+GlovoApi has been created by @joanlopez.
