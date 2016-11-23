@@ -6,8 +6,8 @@ use JL\GlovoApi\HTTP\HttpRequester;
 
 class SessionManager
 {
-    const LOGIN_URL = 'oauth/token';
-    const LOGOUT_URL = 'oauth/token';
+    const LOGIN_URL = 'v1/oauth/token';
+    const LOGOUT_URL = 'v1/oauth/token';
 
     private $httpRequester;
 
