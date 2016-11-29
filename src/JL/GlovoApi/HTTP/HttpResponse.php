@@ -33,7 +33,12 @@ class HttpResponse
         return $this->wasSuccessful;
     }
 
-    public function parameters($key)
+    public function parameters()
+    {
+        return $this->parameters;
+    }
+
+    public function parameter($key)
     {
         return $this->parameters[$key];
     }

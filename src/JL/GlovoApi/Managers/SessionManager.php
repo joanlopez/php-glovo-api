@@ -19,7 +19,7 @@ class SessionManager
     public function login($clientId, $clientSecret)
     {
         $response = $this->httpRequester->postJson(self::LOGIN_URL, array('clientId' => $clientId, 'clientSecret' => $clientSecret));
-        $token = ($response->wasSuccessful()) ? $response->parameters('token') : null;
+        $token = ($response->wasSuccessful()) ? $response->parameter('token') : null;
         return $token;
     }
 

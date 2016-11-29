@@ -66,4 +66,9 @@ class GlovoApi
         else
             throw new \Exception('Error occurred while logging out');
     }
+
+    public function getCustomers()
+    {
+        return $this->customersManager->getCustomers($this->authToken());
+    }
 }

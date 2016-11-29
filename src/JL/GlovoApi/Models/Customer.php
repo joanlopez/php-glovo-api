@@ -32,6 +32,21 @@ class Customer
         $this->description = null;
     }
 
+    public function name()
+    {
+        return $this->name;
+    }
+
+    public function email()
+    {
+        return $this->email;
+    }
+
+    public function urn()
+    {
+        return $this->urn;
+    }
+
     public function setUrn($urn)
     {
         $this->urn = $urn;
