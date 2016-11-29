@@ -42,6 +42,11 @@ class Customer
         return $this->email;
     }
 
+    public function type()
+    {
+        return $this->type;
+    }
+
     public function urn()
     {
         return $this->urn;

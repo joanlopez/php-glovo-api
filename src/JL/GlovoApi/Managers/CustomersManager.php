@@ -41,4 +41,27 @@ class CustomersManager
 
         return $customers;
     }
+
+    public function getCustomer($clientToken, $urn)
+    {
+        $url = self::GET_USERS.'/'.$urn;
+        $response = $this->httpRequester->getJsonAuthorized($url, $clientToken);
+
+        if(!$response->wasSuccessful()) return null;
+        $tmp_customer = new Customer(
+            $response->parameters()->{'name'},
+            $response->parameters()->{'email'},
+            $response->parameters()->{'preferredCityCode'}
+        );
+        if(!is_null($response->parameters()->{'urn'}))
+            $tmp_customer->setUrn($response->parameters()->{'urn'});
+        if(!is_null($response->parameters()->{'type'}))
+            $tmp_customer->setType($response->parameters()->{'type'});
+        if(!is_null($response->parameters()->{'picture'}))
+            $tmp_customer->setPicture($response->parameters()->{'picture'});
+        if(!is_null($response->parameters()->{'description'}))
+            $tmp_customer->setDescription($response->parameters()->{'description'});
+
+        return $tmp_customer;
+    }
 }
