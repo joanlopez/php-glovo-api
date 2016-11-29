@@ -45,4 +45,32 @@ class HttpRequester
         );
         return new HttpResponse($response->getStatusCode(), $response->getReasonPhrase(), json_decode($response->getBody(), true));
     }
+
+    public function getJsonAuthorized($url, $token)
+    {
+        $response = $this->client->request('GET', $url,
+            ['headers' =>
+                [
+                    'Accept' => 'application/json',
+                    'Authorization' => $token
+                ]
+            ]
+        );
+        return new HttpResponse($response->getStatusCode(), $response->getReasonPhrase(), json_decode($response->getBody(), true));
+    }
+
+    public function postJsonAuthorized($url, $token, $parameters)
+    {
+        $response = $this->client->request('POST', $url,
+            ['headers' =>
+                [
+                    'Accept' => 'application/json',
+                    'Authorization' => $token,
+                    'Content-Type' => 'application/json'
+                ],
+             'body' => json_encode($parameters)
+            ]
+        );
+        return new HttpResponse($response->getStatusCode(), $response->getReasonPhrase(), json_decode($response->getBody(), true));
+    }
 }
