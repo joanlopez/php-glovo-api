@@ -12,10 +12,11 @@ PHP library for easy communication with Glovo Api.
 ## Documentation and examples
 
 * [Getting started](https://github.com/joanlopez/php-glovo-api/blob/master/doc/getting-started.md)
+* [Available actions](https://github.com/joanlopez/php-glovo-api/blob/master/doc/available-actions.md)
 
 ## Todo
 
-* Add HttpRequester tests with a mocked client
+* Add HttpRequester tests with a mocked client and check the given url's
 
 ## Credits
 
