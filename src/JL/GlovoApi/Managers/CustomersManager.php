@@ -34,7 +34,7 @@ class CustomersManager
                 $tmp_customer->setUrn($customer_data->{'urn'});
             if(!is_null($customer_data->{'picture'}))
                 $tmp_customer->setPicture($customer_data->{'picture'});
-            if(!is_null($customer_data->{'urn'}))
+            if(!is_null($customer_data->{'description'}))
                 $tmp_customer->setDescription($customer_data->{'description'});
             array_push($customers, $tmp_customer);
         }
@@ -42,9 +42,9 @@ class CustomersManager
         return $customers;
     }
 
-    public function getCustomer($clientToken, $urn)
+    public function getCustomer($clientToken, $customerUrn)
     {
-        $url = self::GET_USERS.'/'.$urn;
+        $url = self::GET_USERS.'/'.$customerUrn;
         $response = $this->httpRequester->getJsonAuthorized($url, $clientToken);
 
         if(!$response->wasSuccessful()) return null;
