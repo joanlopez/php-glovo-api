@@ -81,4 +81,9 @@ class GlovoApi
     {
         return $this->ordersManager->getOrders($this->authToken(), $customerUrn);
     }
+
+    public function getOrder($customerUrn, $orderUrn)
+    {
+        return $this->ordersManager->getOrder($this->authToken(), $customerUrn, $orderUrn);
+    }
 }

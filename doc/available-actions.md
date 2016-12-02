@@ -17,5 +17,5 @@ Here you can see which actions are supported in the current version of this libr
 * [ ] create
 * [ ] update
 * [ ] cancel
-* [ ] get one
+* [x] get one
 * [x] get all

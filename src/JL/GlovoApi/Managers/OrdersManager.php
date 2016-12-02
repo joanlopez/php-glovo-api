@@ -8,7 +8,8 @@ use JL\GlovoApi\Models\Order;
 class OrdersManager
 {
 
-    const GET_ORDERS = 'v1/customers/%s/orders ';
+    const GET_ORDERS = 'v1/customers/%s/orders';
+    const GET_ORDER = 'v1/customers/%s/orders/%s';
 
     private $httpRequester;
 
@@ -45,6 +46,30 @@ class OrdersManager
         }
 
         return $orders;
+    }
+
+    public function getOrder($clientToken, $customerUrn, $orderUrn)
+    {
+        $url = sprintf(self::GET_ORDER, $customerUrn, $orderUrn);
+        $response = $this->httpRequester->getJsonAuthorized($url, $clientToken);
+
+        if(!$response->wasSuccessful()) return null;
+        $tmp_order = new Order(
+            $response->parameters()->{'cityCode'},
+            $response->parameters()->{'points'}
+        );
+        if(!is_null($response->parameters()->{'urn'}))
+            $tmp_order->setUrn($response->parameters()->{'urn'});
+        if(!is_null($response->parameters()->{'description'}))
+            $tmp_order->setDescription($response->parameters()->{'description'});
+        if(!is_null($response->parameters()->{'scheduledTime'}))
+            $tmp_order->setScheduledTime($response->parameters()->{'scheduledTime'});
+        if(!is_null($response->parameters()->{'subtype'}))
+            $tmp_order->setSubtype($response->parameters()->{'subtype'});
+        if(!is_null($response->parameters()->{'phoneNumber'}))
+            $tmp_order->setPhoneNumber($response->parameters()->{'phoneNumber'});
+
+        return $tmp_order;
     }
 
 
