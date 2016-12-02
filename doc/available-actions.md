@@ -18,4 +18,4 @@ Here you can see which actions are supported in the current version of this libr
 * [ ] update
 * [ ] cancel
 * [ ] get one
-* [ ] get all
+* [x] get all

@@ -44,6 +44,16 @@ class Order
         return $this->type;
     }
 
+    public function subtype()
+    {
+        return $this->subtype;
+    }
+
+    public function scheduledTime()
+    {
+        return $this->scheduledTime;
+    }
+
     public function urn()
     {
         return $this->urn;
