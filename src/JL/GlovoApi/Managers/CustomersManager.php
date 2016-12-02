@@ -7,7 +7,8 @@ use JL\GlovoApi\Models\Customer;
 
 class CustomersManager 
 {
-    const GET_USERS = 'v1/users';
+    const GET_CUSTOMERS = 'v1/users';
+    const GET_CUSTOMER = 'v1/users/%s';
 
     private $httpRequester;
 
@@ -18,7 +19,7 @@ class CustomersManager
 
     public function getCustomers($clientToken)
     {
-        $response = $this->httpRequester->getJsonAuthorized(self::GET_USERS, $clientToken);
+        $response = $this->httpRequester->getJsonAuthorized(self::GET_CUSTOMERS, $clientToken);
 
         $customers = array();
         if(!$response->wasSuccessful()) return $customers;
@@ -44,7 +45,7 @@ class CustomersManager
 
     public function getCustomer($clientToken, $customerUrn)
     {
-        $url = self::GET_USERS.'/'.$customerUrn;
+        $url = sprintf(self::GET_CUSTOMER, $customerUrn);
         $response = $this->httpRequester->getJsonAuthorized($url, $clientToken);
 
         if(!$response->wasSuccessful()) return null;
