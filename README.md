@@ -17,6 +17,7 @@ PHP library for easy communication with Glovo Api.
 ## Todo
 
 * Add HttpRequester tests with a mocked client and check the given url's
+* Refactor response to model (duplicate code)
 
 ## Credits
 

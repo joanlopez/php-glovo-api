@@ -21,8 +21,7 @@ class OrdersManager extends Units\Test
             ->then->array($orders)->size->isEqualTo(1)
             ->and->variable($orders[0]->urn())->isEqualTo('glv:customer:fake')
             ->and->variable($orders[0]->cityCode())->isEqualTo('BCN')
-            ->and->variable($orders[0]->subtype())->isEqualTo('SHIPMENT')
-            ->and->variable($orders[0]->scheduledTime())->isEqualTo('2553081904000');
+            ->and->variable($orders[0]->subtype())->isEqualTo('SHIPMENT');
         ;
     }
 }
