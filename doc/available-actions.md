@@ -7,14 +7,14 @@ Here you can see which actions are supported in the current version of this libr
 * [x] logout
 
 ### Customers
-* [ ] create
+* [x] create
 * [ ] update
 * [ ] delete
 * [x] get one
 * [x] get all
 
 ### Orders
-* [ ] create
+* [x] create
 * [ ] update
 * [ ] cancel
 * [x] get one
