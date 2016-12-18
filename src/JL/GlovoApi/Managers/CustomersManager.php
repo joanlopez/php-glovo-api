@@ -9,7 +9,7 @@ class CustomersManager
 {
     const GET_CUSTOMERS = 'v1/users';
     const GET_CUSTOMER = 'v1/users/%s';
-    const POST_CUSTOMER = 'v1/users';
+    const POST_CUSTOMER = 'v1/customers';
 
     private $httpRequester;
 
