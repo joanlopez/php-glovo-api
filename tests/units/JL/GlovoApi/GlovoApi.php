@@ -65,7 +65,7 @@ class GlovoApi extends Units\Test
 
     public function testGetCustomer()
     {
-        $jsonString = '{"type":"Customer","id":15985,"urn":"glv:customer:fake","name":"fake-name","email":"fake-mail","passwordType":"BCRYPT","deviceUrn":null,"picture":null,"description":null,"deleted":false,"phoneNumber":null,"mediaSource":null,"mediaCampaign":null,"preferredLanguage":"en","sourceCompany":null,"sourceCompanyOrders":null,"paymentWay":"MONTHLY","paymentMethod":"BANK_TRANSFER","preferredCityCode":"BCN","os":null,"analyticsId":null,"sendInvoice":false,"enabled":true}';
+        $jsonString = '{"type":"Customer","id":15985,"urn":"glv:customer:fake","name":"fake-name","email":"fake-mail","passwordType":"BCRYPT","deviceUrn":null,"picture":null,"description":"fake-description","deleted":false,"phoneNumber":null,"mediaSource":null,"mediaCampaign":null,"preferredLanguage":"en","sourceCompany":null,"sourceCompanyOrders":null,"paymentWay":"MONTHLY","paymentMethod":"BANK_TRANSFER","preferredCityCode":"fake-city-code","os":null,"analyticsId":null,"sendInvoice":false,"enabled":true}';
         $this->if($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockGenerator()->orphanize('login'))
             ->and($this->mockClass('\JL\GlovoApi\Managers\SessionManager', '\Mock'))
@@ -81,7 +81,8 @@ class GlovoApi extends Units\Test
             ->then->variable($customer->urn())->isEqualTo('glv:customer:fake')
             ->and->variable($customer->name())->isEqualTo('fake-name')
             ->and->variable($customer->email())->isEqualTo('fake-mail')
-            ->and->variable($customer->type())->isEqualTo('Customer');
+            ->and->variable($customer->preferredCityCode())->isEqualTo('fake-city-code')
+            ->and->variable($customer->description())->isEqualTo('fake-description');
         ;
     }
 
@@ -150,5 +151,27 @@ class GlovoApi extends Units\Test
             ->and->variable($order->description())->isEqualTo('fake-description')
             ->and->variable($order->subtype())->isEqualTo('SHIPMENT');
         ;
+    }
+
+    public function testCreateCustomer()
+    {
+        $jsonString = '{"type":"Customer","id":16009,"urn":"glv:customer:fake","name":"fake-name","email":"fake-mail","passwordType":"BCRYPT","deviceUrn":null,"picture":null,"description":"1234","deleted":false,"phoneNumber":null,"mediaSource":null,"mediaCampaign":null,"preferredLanguage":"en","sourceCompany":null,"sourceCompanyOrders":null,"paymentWay":"MONTHLY","paymentMethod":"BANK_TRANSFER","preferredCityCode":"fake-city-code","os":null,"analyticsId":null,"sendInvoice":false,"enabled":true}';
+        $this->if($this->mockGenerator()->orphanize('__construct'))
+            ->and($this->mockGenerator()->orphanize('login'))
+            ->and($this->mockClass('\JL\GlovoApi\Managers\SessionManager', '\Mock'))
+            ->and($mockSessionManager = new \mock\SessionManager())
+            ->and($mockSessionManager->getMockController()->login = '1234')
+            ->and($this->mockGenerator()->orphanize('postJsonAuthorized'))
+            ->and($this->mockClass('\JL\GlovoApi\HTTP\HttpRequester', '\Mock'))
+            ->and($httpRequesterMock = new \mock\HttpRequester())
+            ->and($httpRequesterMock->getMockController()->postJsonAuthorized = new HttpResponse(200, 'OK', json_decode($jsonString)))
+            ->and($customersManager = new CustomersManager($httpRequesterMock))
+            ->and($object = new TestedInstance ('dummyId', 'dummySecret', TestedInstance::ENVIRONMENT_STAGE, $mockSessionManager, $customersManager))
+            ->when($customer = $object->createCustomer('1234', 'fake-city-code', 'fake-name', 'fake-mail'))
+            ->and->variable($customer->urn())->isEqualTo('glv:customer:fake')
+            ->and->variable($customer->preferredCityCode())->isEqualTo('fake-city-code')
+            ->and->variable($customer->description())->isEqualTo('1234')
+            ->and->variable($customer->name())->isEqualTo('fake-name')
+            ->and->variable($customer->email())->isEqualTo('fake-mail');
     }
 }
