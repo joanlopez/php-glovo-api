@@ -62,9 +62,8 @@ class OrdersManager
             $order_data->{'points'}[0]->{'type'}
         );
         if (!is_null($order_data->{'urn'}))
-        {
-            $tmp_order->setUrn($order_data->{'urn'});return $tmp_order;
-        }
+            $tmp_order->setUrn($order_data->{'urn'});
+
         return $tmp_order;
     }
 
