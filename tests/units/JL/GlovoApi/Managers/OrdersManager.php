@@ -15,7 +15,7 @@ class OrdersManager extends Units\Test
             ->and($this->mockGenerator()->orphanize('getJsonAuthorized'))
             ->and($this->mockClass('\JL\GlovoApi\HTTP\HttpRequester', '\Mock'))
             ->and($httpRequesterMock = new \mock\HttpRequester())
-            ->and($httpRequesterMock->getMockController()->getJsonAuthorized = new HttpResponse(200, 'OK', json_decode($jsonString)))
+            ->and($httpRequesterMock->getMockController()->getJsonAuthorized = new HttpResponse(200, 'OK', json_decode($jsonString, true)))
             ->and($object = new TestedManager($httpRequesterMock))
             ->when($orders = $object->getOrders('fake-token', 'fake-customer-urn'))
             ->then->array($orders)->size->isEqualTo(1)
