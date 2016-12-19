@@ -52,13 +52,13 @@ class CustomersManager
     private function createCustomerModel($customer_data)
     {
         $tmp_customer = new Customer(
-            $customer_data->{'name'},
-            $customer_data->{'email'},
-            $customer_data->{'preferredCityCode'},
-            $customer_data->{'description'}
+            $customer_data['name'],
+            $customer_data['email'],
+            $customer_data['preferredCityCode'],
+            $customer_data['description']
         );
-        if (!is_null($customer_data->{'urn'}))
-            $tmp_customer->setUrn($customer_data->{'urn'});
+        if (!is_null($customer_data['urn']))
+            $tmp_customer->setUrn($customer_data['urn']);
 
         return $tmp_customer;
     }

@@ -54,15 +54,15 @@ class OrdersManager
     private function createOrderModel($order_data)
     {
         $tmp_order = new Order(
-            $order_data->{'customer'}->{'urn'},
-            $order_data->{'description'},
-            $order_data->{'cityCode'},
-            $order_data->{'subtype'},
-            $order_data->{'points'}[0]->{'address'}->{'label'},
-            $order_data->{'points'}[0]->{'type'}
+            $order_data['customer']['urn'],
+            $order_data['description'],
+            $order_data['cityCode'],
+            $order_data['subtype'],
+            $order_data['points'][0]['address']['label'],
+            $order_data['points'][0]['type']
         );
-        if (!is_null($order_data->{'urn'}))
-            $tmp_order->setUrn($order_data->{'urn'});
+        if (!is_null($order_data['urn']))
+            $tmp_order->setUrn($order_data['urn']);
 
         return $tmp_order;
     }
