@@ -69,15 +69,16 @@ class OrdersManager
 
     private function createOrderRequestData($description, $cityCode, $address, $addressType, $subtype)
     {
-        $parameters = array(
+        $points = array(
             array(
                 'address' => array('label' => $address),
                 'type' => $addressType
             )
         );
+        $parameters = array();
         $parameters['description'] = $description;
         $parameters['cityCode'] = $cityCode;
-        $parameters['points'] = array();
+        $parameters['points'] = $points;
         $parameters['subtype'] = $subtype;
         return $parameters;
     }

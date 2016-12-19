@@ -17,6 +17,7 @@ PHP library for easy communication with Glovo Api.
 ## Todo
 
 * Add HttpRequester tests with a mocked client and check the given url's
+* Add the reversed tests (check that requests are made as expected)
 * Refactor response to model (duplicate code)
 * Allow isolated passwords for customers (now same as description)
 
