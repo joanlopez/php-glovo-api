@@ -41,10 +41,10 @@ class OrdersManager
         return $tmp_order;
     }
 
-    public function createOrder($clientToken, $customerUrn, $description, $cityCode, $address, $addressType, $subtype)
+    public function createOrder($clientToken, $customerUrn, $description, $cityCode, $points, $subtype)
     {
         $url = sprintf(self::POST_ORDER, $customerUrn);
-        $parameters = $this->createOrderRequestData($description, $cityCode, $address, $addressType, $subtype);
+        $parameters = $this->createOrderRequestData($description, $cityCode, $points, $subtype);
         $response = $this->httpRequester->postJsonAuthorized($url, $clientToken, $parameters);
         if (!$response->wasSuccessful()) return null;
         $tmp_order = $this->createOrderModel($response->parameters());
@@ -67,18 +67,21 @@ class OrdersManager
         return $tmp_order;
     }
 
-    private function createOrderRequestData($description, $cityCode, $address, $addressType, $subtype)
+    private function createOrderRequestData($description, $cityCode, $points, $subtype)
     {
-        $points = array(
-            array(
-                'address' => array('label' => $address),
-                'type' => $addressType
-            )
-        );
+        $points_data = array();
+        foreach($points as $point)
+        {
+            $point_data = array(
+                'address' => array('label' => $point['address']),
+                'type' => $point['type']
+            );
+            array_push($points_data, $point_data);
+        }
         $parameters = array();
         $parameters['description'] = $description;
         $parameters['cityCode'] = $cityCode;
-        $parameters['points'] = $points;
+        $parameters['points'] = $points_data;
         $parameters['subtype'] = $subtype;
         return $parameters;
     }

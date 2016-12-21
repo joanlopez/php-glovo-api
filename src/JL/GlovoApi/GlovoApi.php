@@ -92,8 +92,8 @@ class GlovoApi
         return $this->ordersManager->getOrder($this->authToken(), $customerUrn, $orderUrn);
     }
 
-    public function createOrder($customerUrn, $description, $cityCode, $address, $addressType, $subtype)
+    public function createOrder($customerUrn, $description, $cityCode, $points, $subtype)
     {
-        return $this->ordersManager->createOrder($this->authToken(), $customerUrn, $description, $cityCode, $address, $addressType, $subtype);
+        return $this->ordersManager->createOrder($this->authToken(), $customerUrn, $description, $cityCode, $points, $subtype);
     }
 }
